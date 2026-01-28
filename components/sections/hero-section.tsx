@@ -56,7 +56,7 @@ export function HeroSection() {
                   </div>
                   <span className="text-xs font-medium text-muted-foreground">{feature.label}</span>
                 </div>
-                {index < features.length - 1 && <div className="h-12 w-px bg-border mx-6" />}
+                {index < features.length - 1 && <div className="h-12 w-px bg-gray-300 mx-6" />}
               </div>
             ))}
           </div>
