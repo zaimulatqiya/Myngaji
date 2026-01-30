@@ -3,12 +3,12 @@ import { Facebook, Instagram, Phone } from "lucide-react";
 
 export function FooterSection() {
   return (
-    <footer className="bg-gradient-to-t from-teal-900 to-teal-800 text-white pt-24 pb-12 mt-20">
+    <footer className="bg-primary text-white pt-24 pb-12 mt-20">
       <div className="container mx-auto max-w-6xl px-6">
         <div className="flex flex-col md:flex-row justify-between items-end gap-10">
           {/* Contact Info */}
           <div className="space-y-4">
-            <h4 className="text-xl font-bold text-secondary mb-6">Media Sosial</h4>
+            <h4 className="text-xl font-extrabold text-secondary mb-6">Media Sosial</h4>
             <div className="flex items-center gap-3 text-teal-100 hover:text-white transition-colors">
               <Phone className="w-5 h-5" />
               <span className="font-medium">011-56406429</span>
@@ -33,7 +33,7 @@ export function FooterSection() {
           </div>
         </div>
 
-        <div className="border-t border-teal-700/50 mt-12 pt-8 text-center text-teal-400 text-sm">&copy; {new Date().getFullYear()} MyNgaji Academy. Hak Cipta Terpelihara.</div>
+        <div className="border-t border-teal-700/50 mt-12 pt-8 text-center text-secondary text-sm">&copy; {new Date().getFullYear()} MyNgaji Academy. Hak Cipta Terpelihara.</div>
       </div>
     </footer>
   );

@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Cairo } from "next/font/google";
+import { Figtree } from "next/font/google";
 import { Navbar } from "@/components/layout/navbar";
 import "./globals.css";
 
-const cairo = Cairo({
-  variable: "--font-cairo",
+const figtree = Figtree({
+  variable: "--font-figtree",
   subsets: ["latin"],
 });
 
@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${cairo.variable} antialiased font-sans`}>
+      <body className={`${figtree.variable} antialiased font-sans`}>
         <Navbar />
         {children}
       </body>

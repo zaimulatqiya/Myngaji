@@ -100,7 +100,7 @@ export const SenaraiPakejKelas = () => {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex flex-wrap items-center justify-center gap-x-2 mb-16 text-center">
-          <ScrollFloat containerClassName="!my-0" textClassName="text-3xl md:text-5xl font-bold tracking-tight">
+          <ScrollFloat containerClassName="!my-0" textClassName="text-3xl md:text-5xl font-extrabold tracking-tight">
             <span className="text-primary">Senarai </span>
             <span className="text-secondary">Pakej Kelas.</span>
           </ScrollFloat>

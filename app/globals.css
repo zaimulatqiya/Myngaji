@@ -121,11 +121,11 @@
   }
 
   body {
-    @apply bg-background text-foreground font-cairo;
+    @apply bg-background text-foreground font-sans;
   }
 }
 
 /* Custom Utilities if needed */
-.font-cairo {
-  font-family: var(--font-cairo), sans-serif;
+.font-figtree {
+  font-family: var(--font-figtree), sans-serif;
 }

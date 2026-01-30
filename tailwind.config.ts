@@ -63,8 +63,8 @@ const config: Config = {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        sans: ["var(--font-cairo)", "sans-serif"],
-        cairo: ["var(--font-cairo)", "sans-serif"],
+        sans: ["var(--font-figtree)", "sans-serif"],
+        figtree: ["var(--font-figtree)", "sans-serif"],
       },
       animation: {
         "shiny-button": "shiny-button 8s infinite",

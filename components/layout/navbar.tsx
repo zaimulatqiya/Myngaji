@@ -34,8 +34,8 @@ export function Navbar() {
 
   return (
     <header
-      className={cn("fixed top-0 left-0 right-0 z-50 mx-auto w-full border-b border-transparent transition-all duration-300 ease-in-out", {
-        "bg-[#082b2f]/40 backdrop-blur-md shadow-sm dark:bg-black/50 border-white/30 dark:border-gray-800 md:top-4 md:max-w-7xl md:rounded-2xl md:border": scrolled && !open,
+      className={cn("fixed top-0 left-0 right-0 z-50 mx-auto w-full border-b border-transparent transition-all duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]", {
+        "bg-[#082b2f]/80 backdrop-blur-md shadow-sm dark:bg-black/50 border-white/30 dark:border-gray-800 md:top-4 md:max-w-7xl md:rounded-full md:border": scrolled && !open,
         "bg-white dark:bg-black h-full": open,
         "bg-transparent": !scrolled && !open,
       })}
@@ -64,7 +64,7 @@ export function Navbar() {
         {/* CTA Button */}
         <div className="hidden md:block">
           <Link href="#">
-            <ShinyButton className="inline-flex items-center gap-2 rounded-full px-6 py-2.5">
+            <ShinyButton className={cn("inline-flex items-center gap-2 px-6 py-2.5 transition-all duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]", scrolled ? "!rounded-full" : "!rounded-xl")}>
               Daftar Kelas Percubaan
               <ArrowRight className="w-4 h-4 ml-2 inline-block" />
             </ShinyButton>
