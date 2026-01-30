@@ -1,0 +1,40 @@
+import Image from "next/image";
+import { Facebook, Instagram, Phone } from "lucide-react";
+
+export function FooterSection() {
+  return (
+    <footer className="bg-gradient-to-t from-teal-900 to-teal-800 text-white pt-24 pb-12 mt-20">
+      <div className="container mx-auto max-w-6xl px-6">
+        <div className="flex flex-col md:flex-row justify-between items-end gap-10">
+          {/* Contact Info */}
+          <div className="space-y-4">
+            <h4 className="text-xl font-bold text-secondary mb-6">Media Sosial</h4>
+            <div className="flex items-center gap-3 text-teal-100 hover:text-white transition-colors">
+              <Phone className="w-5 h-5" />
+              <span className="font-medium">011-56406429</span>
+            </div>
+            <div className="flex items-center gap-3 text-teal-100 hover:text-white transition-colors">
+              <Facebook className="w-5 h-5" />
+              <span className="font-medium">Pusat Pengajian alQuran & Akademik</span>
+            </div>
+            <div className="flex items-center gap-3 text-teal-100 hover:text-white transition-colors">
+              <Instagram className="w-5 h-5" />
+              <span className="font-medium">myngaji.academy</span>
+            </div>
+            <div className="flex items-center gap-3 text-teal-100 hover:text-white transition-colors">
+              <div className="w-5 h-5 border border-current rounded flex items-center justify-center font-bold text-[10px]">Tk</div>
+              <span className="font-medium">myngajiacademy</span>
+            </div>
+          </div>
+
+          {/* Big Logo Footer */}
+          <div className="text-right">
+            <Image src="/assets/logo1.png" alt="MyNgaji Logo" width={400} height={150} className="w-48 md:w-80 h-auto ml-auto opacity-90 hover:opacity-100 transition-opacity duration-300" />
+          </div>
+        </div>
+
+        <div className="border-t border-teal-700/50 mt-12 pt-8 text-center text-teal-400 text-sm">&copy; {new Date().getFullYear()} MyNgaji Academy. Hak Cipta Terpelihara.</div>
+      </div>
+    </footer>
+  );
+}
