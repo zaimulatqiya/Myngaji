@@ -4,7 +4,8 @@ import { HeroSection } from "@/components/sections/hero-section";
 import { HadithSection } from "@/components/sections/hadith-section";
 import { SenaraiPakejKelas } from "@/components/sections/senarai-pakej-kelas";
 import ModernBackgroundPaths from "@/components/modern-background-paths";
-import { FooterSection } from "@/components/sections/footer-section";
+import { FooterSection } from "@/components/layout/footer-section";
+import { KelebihanSection } from "@/components/sections/kelebihan-section";
 
 export default function Home() {
   return (
@@ -13,7 +14,7 @@ export default function Home() {
       <HadithSection />
       <SenaraiPakejKelas />
       <ModernBackgroundPaths />
-
+      <KelebihanSection />
       <FooterSection />
     </main>
   );

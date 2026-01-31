@@ -3,21 +3,35 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronDown } from "lucide-react";
 import { ShinyButton } from "../shiny-button";
 import { useScroll } from "@/components/use-scroll";
 import { MenuToggleIcon } from "@/components/menu-toggle-icon";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
+import { usePathname } from "next/navigation";
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
   const scrolled = useScroll(10);
+  const pathname = usePathname();
 
   const navLinks = [
-    { name: "Siapa Kami", href: "#" },
-    { name: "Pakej Kelas", href: "#" },
-    { name: "Kelebihan MyNgaji", href: "#" },
+    { name: "Tentang", href: "#" },
+    { name: "Tenaga Pengajar", href: "/tenaga-pengajar" },
+    {
+      name: "Kelas",
+      href: "#",
+      submenu: [
+        { name: "Kelas Alquran", href: "#" },
+        { name: "Kelas Fardhu Ain", href: "#" },
+        { name: "Kelas Bahasa Arab", href: "#" },
+      ],
+    },
+    { name: "Hubungi", href: "#" },
+    { name: "Lokasi", href: "#" },
+    { name: "Waktu Sholat", href: "#" },
+    { name: "Testimoni", href: "#" },
   ];
 
   useEffect(() => {
@@ -55,9 +69,27 @@ export function Navbar() {
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-8 text-sm font-medium text-white">
           {navLinks.map((link) => (
-            <Link key={link.name} href={link.href} className="text-white/80 hover:text-white transition-colors font-medium text-[15px] hover:scale-105">
-              {link.name}
-            </Link>
+            <div key={link.name} className="relative group">
+              <Link href={link.href} className={cn("transition-colors font-medium text-[16px] hover:scale-105 flex items-center gap-1", pathname === link.href ? "text-white font-bold" : "text-white/80 hover:text-white")}>
+                {link.name}
+                {link.submenu && <ChevronDown className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" />}
+              </Link>
+
+              {link.submenu && (
+                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-56 p-2 bg-white rounded-2xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top translate-y-2 group-hover:translate-y-0 z-50">
+                  {/* Invisible bridge to prevent closing when moving cursor */}
+                  <div className="absolute -top-4 left-0 w-full h-4" />
+
+                  <div className="flex flex-col gap-1">
+                    {link.submenu.map((subItem) => (
+                      <Link key={subItem.name} href={subItem.href} className="block px-4 py-3 rounded-xl text-sm font-medium text-slate-600 hover:text-primary hover:bg-primary/5 transition-colors">
+                        {subItem.name}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
           ))}
         </div>
 
@@ -82,7 +114,7 @@ export function Navbar() {
         <div className="flex h-full w-full flex-col p-6 animate-in slide-in-from-top-10 duration-200">
           <div className="flex flex-col gap-6 mt-4">
             {navLinks.map((link) => (
-              <Link key={link.name} href={link.href} className="text-xl font-medium text-slate-800 hover:text-primary transition-colors" onClick={() => setOpen(false)}>
+              <Link key={link.name} href={link.href} className={cn("text-xl font-medium transition-colors", pathname === link.href ? "text-primary font-bold" : "text-slate-800 hover:text-primary")} onClick={() => setOpen(false)}>
                 {link.name}
               </Link>
             ))}

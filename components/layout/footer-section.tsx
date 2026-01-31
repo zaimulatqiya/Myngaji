@@ -3,7 +3,7 @@ import { Facebook, Instagram, Phone } from "lucide-react";
 
 export function FooterSection() {
   return (
-    <footer className="bg-primary text-white pt-24 pb-12 mt-20">
+    <footer className="bg-primary text-white pt-24 pb-12">
       <div className="container mx-auto max-w-6xl px-6">
         <div className="flex flex-col md:flex-row justify-between items-end gap-10">
           {/* Contact Info */}

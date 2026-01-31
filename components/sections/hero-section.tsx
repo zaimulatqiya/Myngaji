@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { BookOpen, Languages, User, Calendar, BarChart } from "lucide-react";
-import { FaQuran, FaUser, FaLanguage } from "react-icons/fa";
+import { BookOpen, Languages, User, Calendar, BarChart, Award } from "lucide-react";
+import { FaQuran, FaUser, FaLanguage, FaPrayingHands } from "react-icons/fa";
 import { RiUserVoiceFill } from "react-icons/ri";
 import CountUp from "../count-up";
 import { ShinyButton } from "../shiny-button";
@@ -17,7 +17,7 @@ export function HeroSection() {
   const features = [
     { icon: FaQuran, label: "Bacaan Al Quran" },
     { icon: RiUserVoiceFill, label: "Bahasa Arab" },
-    { icon: FaUser, label: "Fardu Ain" },
+    { icon: FaPrayingHands, label: "Fardu Ain" },
   ];
 
   return (
@@ -39,7 +39,7 @@ export function HeroSection() {
         {/* Left Content */}
         <div className="space-y-8">
           <div className="space-y-2">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight">
               <span className="text-secondary block mb-2">Nak topup ilmu ?</span>
               <span className="text-white">Jom MyNgaji bantu.</span>
             </h1>
@@ -77,20 +77,37 @@ export function HeroSection() {
               <Image src="/assets/blob.svg" alt="Blob Background" fill className="object-contain scale-[1.8]" priority />
             </div> */}
 
-            {/* Floating Card 1: Classes/Student Info */}
-            <div className="absolute bottom-16 left-0 sm:left-[-20px] lg:left-0 xl:-left-12 z-20 bg-white/90 backdrop-blur-sm p-4 rounded-2xl shadow-lg flex items-center gap-4 animate-in fade-in slide-in-from-bottom-4 duration-1000">
-              <div className="bg-primary/10 p-2.5 rounded-lg text-primary">
-                <Calendar className="w-6 h-6 stroke-[1.5]" />
+            {/* Floating Card 1: Bacaan Al Quran */}
+            <div className="absolute bottom-12 left-0 sm:left-[-20px] lg:-left-8 xl:-left-16 z-20 bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-xl flex items-center gap-4 animate-in fade-in slide-in-from-bottom-8 duration-1000 border border-emerald-100/50 hover:scale-105 transition-transform">
+              <div className="bg-emerald-100/80 p-3 rounded-xl text-emerald-600 shadow-sm">
+                <FaQuran className="w-6 h-6" />
               </div>
               <div>
-                <p className="text-xl font-bold text-[#1A3C34]">280+</p>
-                <p className="text-xs font-medium text-muted-foreground">Kelas Bulanan</p>
+                <p className="text-sm font-bold text-slate-800">Bacaan Al-Quran</p>
+                <p className="text-[10px] font-medium text-slate-500">Tajwid & Fasohah</p>
               </div>
             </div>
 
-            {/* Floating Card 2: Chart Icon */}
-            <div className="absolute top-1/2 right-0 sm:right-[-20px] lg:right-0 xl:-right-6 -translate-y-1/2 z-20 bg-secondary p-3 rounded-xl shadow-lg animate-in fade-in zoom-in duration-1000 delay-200">
-              <BarChart className="w-8 h-8 text-[#1A3C34] stroke-[1.5]" />
+            {/* Floating Card 2: Bahasa Arab */}
+            <div className="absolute top-1/2 right-0 sm:right-[-20px] lg:-right-4 xl:-right-12 -translate-y-1/2 z-20 bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-xl flex items-center gap-4 animate-in fade-in zoom-in duration-1000 delay-200 border border-amber-100/50 hover:scale-105 transition-transform">
+              <div className="bg-amber-100/80 p-3 rounded-xl text-amber-600 shadow-sm">
+                <RiUserVoiceFill className="w-6 h-6" />
+              </div>
+              <div>
+                <p className="text-sm font-bold text-slate-800">Bahasa Arab</p>
+                <p className="text-[10px] font-medium text-slate-500">Komunikasi & Nahu</p>
+              </div>
+            </div>
+
+            {/* Floating Card 3: Fardu Ain */}
+            <div className="absolute top-16 left-0 sm:left-[-20px] lg:left-4 xl:-left-4 z-20 bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-xl flex items-center gap-4 animate-in fade-in slide-in-from-left-8 duration-1000 delay-300 border border-blue-100/50 hover:scale-105 transition-transform">
+              <div className="bg-blue-100/80 p-3 rounded-xl text-blue-600 shadow-sm">
+                <FaPrayingHands className="w-6 h-6" />
+              </div>
+              <div>
+                <p className="text-sm font-bold text-slate-800">Fardu Ain</p>
+                <p className="text-[10px] font-medium text-slate-500">Amali & Teori</p>
+              </div>
             </div>
 
             {/* Main Person Image */}

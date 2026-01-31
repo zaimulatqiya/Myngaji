@@ -16,7 +16,7 @@ interface PackageItem {
   buttonBorder: string;
   colSpan: string;
   imagePos: "circle-left" | "circle-right" | "featured-right" | "bottom-icon" | "featured-left";
-  icon?: React.ElementType;
+  icon?: React.ElementType | string;
 }
 
 const packages: PackageItem[] = [
@@ -25,12 +25,12 @@ const packages: PackageItem[] = [
     title: "Kelas Mengaji Kanak-kanak",
     points: ["Eksklusif one-to-one", "Waktu kelas yang fleksibel", "Menerima pelajar seawal 6 tahun", "Sesi pembelajaran yang interaktif"],
     bg: "bg-white",
-    accent: "text-orange-900",
-    titleColor: "text-amber-500",
+    accent: "text-primary",
+    titleColor: "text-foreground",
     buttonBorder: "border-orange-200 text-orange-900 hover:bg-orange-100",
     colSpan: "col-span-1",
     imagePos: "circle-left", // Icon Left
-    icon: User,
+    icon: "/pakej/icon-1.svg",
   },
   {
     id: "kids-arab",
@@ -42,19 +42,19 @@ const packages: PackageItem[] = [
     buttonBorder: "border-cyan-200 text-cyan-900 hover:bg-cyan-100",
     colSpan: "col-span-1",
     imagePos: "circle-right", // Icon Right
-    icon: BookOpen,
+    icon: "/pakej/icon-2.svg",
   },
   {
     id: "hafazan",
     title: "Kelas Hafazan al-Quran",
     points: ["Kelas secara one-to-one", "Dibimbing oleh asatizah hafiz/hafizah", "Terbuka kepada kanak-kanak & dewasa yang ingin memulakan hafalan al-Quran atau mengulang bacaan bersama asatizah bertauliah"],
     bg: "bg-white",
-    accent: "text-emerald-900",
-    titleColor: "text-emerald-600",
+    accent: "text-primary",
+    titleColor: "text-foreground",
     buttonBorder: "border-emerald-200 text-emerald-900 hover:bg-emerald-100",
     colSpan: "col-span-1 md:col-span-2",
     imagePos: "featured-right", // Large Icon Right
-    icon: Star,
+    icon: "/pakej/icon-3.svg",
   },
   {
     id: "kafa",
@@ -66,19 +66,19 @@ const packages: PackageItem[] = [
     buttonBorder: "border-orange-200 text-orange-900 hover:bg-orange-100",
     colSpan: "col-span-1",
     imagePos: "bottom-icon", // Icon Bottom Right
-    icon: CheckCircle2,
+    icon: "/pakej/icon-4.svg",
   },
   {
     id: "adult-mengaji",
     title: "Kelas Mengaji Dewasa",
     points: ["Kelas secara one-to-one", "Dibimbing oleh asatizah yang bertauliah & berpengetahuan", "Pendedahan ilmu asas tajwid", "Slide & nota disediakan"],
     bg: "bg-white",
-    accent: "text-cyan-900",
-    titleColor: "text-cyan-600",
+    accent: "text-primary",
+    titleColor: "text-foreground",
     buttonBorder: "border-cyan-200 text-cyan-900 hover:bg-cyan-100",
     colSpan: "col-span-1",
     imagePos: "bottom-icon", // Icon Bottom Right
-    icon: Users,
+    icon: "/pakej/iconn-5.svg",
   },
   {
     id: "adult-arab",
@@ -90,7 +90,7 @@ const packages: PackageItem[] = [
     buttonBorder: "border-orange-200 text-orange-900 hover:bg-orange-100",
     colSpan: "col-span-1 md:col-span-2",
     imagePos: "featured-left", // Icon Left
-    icon: BookOpen,
+    icon: "pakej/icon-6.svg",
   },
 ];
 
@@ -100,9 +100,9 @@ export const SenaraiPakejKelas = () => {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex flex-wrap items-center justify-center gap-x-2 mb-16 text-center">
-          <ScrollFloat containerClassName="!my-0" textClassName="text-3xl md:text-5xl font-extrabold tracking-tight">
-            <span className="text-primary">Senarai </span>
-            <span className="text-secondary">Pakej Kelas.</span>
+          <ScrollFloat containerClassName="!my-0" textClassName="text-3xl md:text-5xl font-black tracking-tight">
+            <span className="text-primary">SENARAI </span>
+            <span className="text-secondary">PAKEJ KELAS.</span>
           </ScrollFloat>
         </div>
 
@@ -134,15 +134,16 @@ export const SenaraiPakejKelas = () => {
 };
 
 const PackageCard = ({ pkg }: { pkg: PackageItem }) => {
-  const Icon = pkg.icon || BookOpen;
+  const isCustomIcon = typeof pkg.icon === "string";
+  const Icon = !isCustomIcon ? pkg.icon || BookOpen : BookOpen; // Fallback to avoid error, but won't be used if isCustomIcon is true
 
   const isPrimary = pkg.bg.includes("bg-primary") || pkg.bg.includes("bg-[#2F5148]");
 
   // Styles based on card background
   const titleColor = isPrimary ? "text-white" : "text-slate-900";
   const descColor = isPrimary ? "text-white/80" : pkg.accent;
+  // Use current color for text class, but custom icon might need explicit handling or just use original colors
   const iconColor = isPrimary ? "text-white" : pkg.accent;
-
 
   // If white card: Primary colored button with white text (ensures visibility)
   const buttonClasses = isPrimary ? "bg-white text-primary hover:bg-slate-100" : "bg-primary text-white hover:bg-primary/90 shadow-md hover:shadow-lg";
@@ -150,7 +151,25 @@ const PackageCard = ({ pkg }: { pkg: PackageItem }) => {
   return (
     <div className={clsx("group relative rounded-[2.5rem] p-8 pb-10 flex flex-col items-center text-center transition-all duration-300", pkg.bg, "shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)]")}>
       <div className={clsx("mb-6", iconColor)}>
-        <Icon className="w-10 h-10 stroke-[1.2]" />
+        {isCustomIcon ? (
+          <div className="relative w-20 h-20 mb-2">
+            <div
+              className="absolute inset-0 bg-current transition-colors duration-300"
+              style={{
+                maskImage: `url('${pkg.icon as string}')`,
+                WebkitMaskImage: `url('${pkg.icon as string}')`,
+                maskSize: "contain",
+                WebkitMaskSize: "contain",
+                maskRepeat: "no-repeat",
+                WebkitMaskRepeat: "no-repeat",
+                maskPosition: "center",
+                WebkitMaskPosition: "center",
+              }}
+            />
+          </div>
+        ) : (
+          <Icon className="w-10 h-10 stroke-[1.2]" />
+        )}
       </div>
 
       <h3 className={clsx("text-xl font-semibold mb-1", titleColor)}>{pkg.title}</h3>
